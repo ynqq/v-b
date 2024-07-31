@@ -1,15 +1,24 @@
 {
-  "name": "v-b",
+  "name": "hd-vb",
   "version": "0.0.1",
   "type": "module",
+  "publisher": "ynqq",
+  "license": "MIT",
+  "author": {
+    "name": "ynqq"
+  },
   "bin": {
-    "v-b": "./bin/main.js"
+    "hd-vb": "./bin/main.js"
   },
   "main": "./bin/main.js",
+  "files": [
+    "./bin"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "test": "npm run build & node ./bin/main.js build"
+    "build": "tsc && vite build"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",
