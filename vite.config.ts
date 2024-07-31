@@ -11,7 +11,7 @@ export default defineConfig({
       fileName: 'main'
     },
     rollupOptions: {
-      external: ['commander', 'inquirer'],
+      external: [],
       output: {
         banner: '#!/usr/bin/env node'
       }

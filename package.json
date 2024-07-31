@@ -1,6 +1,6 @@
 {
   "name": "hd-vb",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "publisher": "ynqq",
   "license": "MIT",
@@ -11,14 +11,20 @@
     "hd-vb": "./bin/main.js"
   },
   "main": "./bin/main.js",
-  "files": [
-    "./bin"
-  ],
   "engines": {
     "node": ">=16"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "publish": "npm run build & npm publish"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "inquirer": "^8.2.4",
+    "ora": "^7.0.1",
+    "rc": "^1.2.8",
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",
@@ -26,12 +32,6 @@
     "@types/node": "^22.0.0",
     "@types/rc": "^1.2.4",
     "@types/shelljs": "^0.8.15",
-    "chalk": "^5.3.0",
-    "commander": "^11.1.0",
-    "inquirer": "^8.2.4",
-    "ora": "^7.0.1",
-    "rc": "^1.2.8",
-    "shelljs": "^0.8.5",
     "typescript": "^5.4.5",
     "vite": "^4.4.11"
   }
