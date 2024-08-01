@@ -3,6 +3,7 @@ import { writeFileSync } from "fs";
 import path from "path";
 import rc from "rc";
 import shelljs from "shelljs";
+import { NAME } from "../const";
 
 export const getConfig = () => {
   const config = rc("vb", {
@@ -30,7 +31,7 @@ export const moveFiles = async () => {
   if (movePath === "") {
     console.log(
       chalk.red("未设置移动路径，请使用") +
-        chalk.yellow("v-b config set movePath <path>") +
+        chalk.yellow(`${NAME} config set movePath <path>`) +
         "进行设置"
     );
     return Promise.reject();
@@ -60,11 +61,10 @@ const startMove = (targetPath: string, distPath: string) => {
   );
 };
 
-
 export const checkMovePath = () => {
-  return !!getConfig().movePath
-}
+  return !!getConfig().movePath;
+};
 
 export const checkUploadPath = () => {
-  return !!getConfig().uploadPath
-}
+  return !!getConfig().uploadPath;
+};

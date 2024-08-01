@@ -7,6 +7,7 @@ import { runBuild } from "./build";
 import { checkMovePath, checkUploadPath, getConfig, saveConfig } from "./move";
 import chalk from "chalk";
 import { kill } from "process";
+import { NAME } from "./const";
 const { createPromptModule } = inquirer.default;
 
 const prompt = createPromptModule();
@@ -21,7 +22,7 @@ program
       if (!checkMovePath()) {
         console.log(
           chalk.red("未设置移动路径，请使用") +
-            chalk.yellow("v-b config set movePath <path>") +
+            chalk.yellow(`${NAME} config set movePath <path>`) +
             "进行设置"
         );
         kill(process.pid);
@@ -32,7 +33,7 @@ program
       if (!checkUploadPath()) {
         console.log(
           chalk.red("未设置上传路径，请使用") +
-            chalk.yellow("v-b config set uploadPath <path>") +
+            chalk.yellow(`${NAME} config set uploadPath <path>`) +
             "进行设置"
         );
         kill(process.pid);

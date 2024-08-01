@@ -107,6 +107,7 @@ const useGitter = () => {
     pullCode
   };
 };
+const NAME = "hd-vb";
 const getConfig = () => {
   const config = rc("vb", {
     movePath: "",
@@ -127,7 +128,7 @@ const moveFiles = async () => {
   const { movePath, dist } = config;
   if (movePath === "") {
     console.log(
-      chalk.red("未设置移动路径，请使用") + chalk.yellow("v-b config set movePath <path>") + "进行设置"
+      chalk.red("未设置移动路径，请使用") + chalk.yellow(`${NAME} config set movePath <path>`) + "进行设置"
     );
     return Promise.reject();
   }
@@ -250,12 +251,12 @@ const runBuild = () => {
 };
 const { createPromptModule } = inquirer.default;
 const prompt = createPromptModule();
-program.command("build").option("--move", "打包完成后进行移动").option("--upload", "打包完成后进行上传").action(async ({ move, upload }) => {
+program.addHelpText("beforeAll", "asdasd").command("build").option("--move", "打包完成后进行移动").option("--upload", "打包完成后进行上传").action(async ({ move, upload }) => {
   const pass = move || upload;
   if (move) {
     if (!checkMovePath()) {
       console.log(
-        chalk.red("未设置移动路径，请使用") + chalk.yellow("v-b config set movePath <path>") + "进行设置"
+        chalk.red("未设置移动路径，请使用") + chalk.yellow(`${NAME} config set movePath <path>`) + "进行设置"
       );
       kill(process.pid);
       return;
@@ -264,7 +265,7 @@ program.command("build").option("--move", "打包完成后进行移动").option(
   if (upload) {
     if (!checkUploadPath()) {
       console.log(
-        chalk.red("未设置上传路径，请使用") + chalk.yellow("v-b config set uploadPath <path>") + "进行设置"
+        chalk.red("未设置上传路径，请使用") + chalk.yellow(`${NAME} config set uploadPath <path>`) + "进行设置"
       );
       kill(process.pid);
       return;
