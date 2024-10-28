@@ -8,6 +8,7 @@ import { writeFileSync } from "fs";
 import path from "path";
 import rc from "rc";
 import shelljs from "shelljs";
+import os from "os";
 import { kill } from "process";
 const createOra = (text, color = "yellow") => {
   const spinner = ora(text).start();
@@ -108,6 +109,7 @@ const useGitter = () => {
   };
 };
 const NAME = "hd-vb";
+const userHome = os.homedir();
 const getConfig = () => {
   const config = rc("vb", {
     movePath: "",
@@ -116,7 +118,7 @@ const getConfig = () => {
   });
   return config;
 };
-const npmrcFilePath = path.join(process.env.USERPROFILE, ".vbrc");
+const npmrcFilePath = path.join(userHome, ".vbrc");
 const saveConfig = (config) => {
   const oldConfig = getConfig();
   const configString = Object.entries({ ...oldConfig, ...config }).map(([key, value]) => `${key}=${value}`).join("\n");
@@ -251,7 +253,7 @@ const runBuild = () => {
 };
 const { createPromptModule } = inquirer.default;
 const prompt = createPromptModule();
-program.addHelpText("beforeAll", "asdasd").command("build").option("--move", "打包完成后进行移动").option("--upload", "打包完成后进行上传").action(async ({ move, upload }) => {
+program.command("build").option("--move", "打包完成后进行移动").option("--upload", "打包完成后进行上传").action(async ({ move, upload }) => {
   const pass = move || upload;
   if (move) {
     if (!checkMovePath()) {

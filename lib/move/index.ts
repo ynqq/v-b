@@ -4,6 +4,8 @@ import path from "path";
 import rc from "rc";
 import shelljs from "shelljs";
 import { NAME } from "../const";
+import os from 'os'
+const userHome = os.homedir();
 
 export const getConfig = () => {
   const config = rc("vb", {
@@ -14,7 +16,7 @@ export const getConfig = () => {
   return config;
 };
 
-const npmrcFilePath = path.join(process.env.USERPROFILE!, ".vbrc");
+const npmrcFilePath = path.join(userHome!, ".vbrc");
 
 export const saveConfig = (config: Record<string, string>) => {
   const oldConfig = getConfig();
