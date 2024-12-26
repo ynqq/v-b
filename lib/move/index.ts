@@ -12,6 +12,7 @@ export const getConfig = () => {
     movePath: "",
     uploadPath: "",
     dist: "./dist/",
+    buildCommand: "build:prod"
   });
   return config;
 };

@@ -8,6 +8,7 @@ import { checkMovePath, checkUploadPath, getConfig, saveConfig } from "./move";
 import chalk from "chalk";
 import { kill } from "process";
 import { NAME } from "./const";
+import pkg from "./config.json";
 const { createPromptModule } = inquirer.default;
 
 const prompt = createPromptModule();
@@ -82,6 +83,8 @@ program
     // 选择移动或者上传
     await moveDist(move ? "move" : upload ? "upload" : undefined);
   });
+
+program.version(pkg.version, '-v, --version')
 
 const Config = new Command("config");
 Config.command("ls").action(() => {

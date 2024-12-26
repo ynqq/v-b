@@ -114,7 +114,8 @@ const getConfig = () => {
   const config = rc("vb", {
     movePath: "",
     uploadPath: "",
-    dist: "./dist/"
+    dist: "./dist/",
+    buildCommand: "build:prod"
   });
   return config;
 };
@@ -229,7 +230,8 @@ const useCommond = ({ prompt: prompt2, getBranches }) => {
 };
 const runBuild = () => {
   return new Promise((resolve, reject) => {
-    const sp = spawn("npm", ["run", "build:prod"], {
+    const buildCommond = getConfig().buildCommand;
+    const sp = spawn("npm", ["run", buildCommond], {
       stdio: "inherit",
       shell: true,
       env: process.env
@@ -250,6 +252,10 @@ const runBuild = () => {
       resolve();
     });
   });
+};
+const version = "1.1.0";
+const pkg = {
+  version
 };
 const { createPromptModule } = inquirer.default;
 const prompt = createPromptModule();
@@ -304,6 +310,7 @@ program.command("build").option("--move", "打包完成后进行移动").option(
   await runBuild();
   await moveDist(move ? "move" : upload ? "upload" : void 0);
 });
+program.version(pkg.version, "-v, --version");
 const Config = new Command("config");
 Config.command("ls").action(() => {
   console.log(getConfig());
